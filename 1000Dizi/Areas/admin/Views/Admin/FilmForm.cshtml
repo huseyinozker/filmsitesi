@@ -1,0 +1,73 @@
+﻿@model _1000Dizi.Models.FilmTablosu
+@{
+    ViewBag.Title = "FilmForm";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container">
+        <h2>Filmler Form Sayfası</h2>
+        @using(Html.BeginForm("Kaydet","Admin",FormMethod.Post,new { @enctype = "multipart/form-data" }))
+            {
+    <table class="table table-bordered">
+        <tr>
+            <td>
+                Foto
+                @if (ViewBag.Deneme != null)
+                {
+                    <span>********* @ViewBag.Deneme  ******</span>
+                }
+            </td>
+            <td>
+                @if (Model.film_resim != null)
+                {
+                    <img src="~/Content/images/movie/@Model.film_resim" width="250" />
+
+                }
+                @Html.TextBoxFor(m => m.resimFile, new { type = "file" });
+                @if (ViewBag.HataResim != null)
+                {
+                    <span class="field-validation-error" data-valmsg-for="resimFile" data-valmsg-replace="true">Resim alanı gereklidir.</span>
+                }
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Film İsmi
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.film_ismi, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.film_ismi)
+            </td>
+        </tr>
+        <tr>
+            <td>Film Açıklama</td>
+            <td>
+                @Html.TextBoxFor(m => m.film_aciklama, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.film_aciklama)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Film Vizyonda mı?
+            </td>
+            <td>
+                @Html.TextBoxFor(m => (m.film_vizyon), new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.film_vizyon)
+            </td>
+        </tr>
+        
+        <tr>
+            <td></td>
+            <td>
+                @Html.HiddenFor(m => m.film_resim)
+                @Html.HiddenFor(m=>m.film_id)
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </td>
+        </tr>
+    </table>
+            }
+    </div>
+</div>
+

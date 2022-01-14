@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VeriTabaniModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BiletTablosu">
+    <Key>
+      <PropertyRef Name="bilet_id" />
+    </Key>
+    <Property Name="bilet_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bilet_film" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bilet_koltuk" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bilet_tarih" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="bilet_saat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="bilet_uyeId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="FilmTablosu">
+    <Key>
+      <PropertyRef Name="film_id" />
+    </Key>
+    <Property Name="film_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="film_ismi" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="film_aciklama" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="film_vizyon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="film_resim" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SeansKoltukTablosu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="seans_id" Type="Int32" Nullable="false" />
+    <Property Name="koltuk_no" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="SeansTablosu">
+    <Key>
+      <PropertyRef Name="seans_id" />
+    </Key>
+    <Property Name="seans_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="seans_filmId" Type="Int32" Nullable="false" />
+    <Property Name="seans_tarih" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="seans_saat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UyelerTablosu">
+    <Key>
+      <PropertyRef Name="uye_id" />
+    </Key>
+    <Property Name="uye_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uye_isim" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="uye_sifre" Type="String" MaxLength="250" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KullanicilarTablosu">
+    <Key>
+      <PropertyRef Name="kullanici_ad" />
+      <PropertyRef Name="kullanici_sifre" />
+    </Key>
+    <Property Name="kullanici_ad" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kullanici_sifre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="VeriTabaniEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BiletTablosu" EntityType="Self.BiletTablosu" />
+    <EntitySet Name="FilmTablosu" EntityType="Self.FilmTablosu" />
+    <EntitySet Name="SeansKoltukTablosu" EntityType="Self.SeansKoltukTablosu" />
+    <EntitySet Name="SeansTablosu" EntityType="Self.SeansTablosu" />
+    <EntitySet Name="UyelerTablosu" EntityType="Self.UyelerTablosu" />
+    <EntitySet Name="KullanicilarTablosu" EntityType="Self.KullanicilarTablosu" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VeriTabaniModelStoreContainer" CdmEntityContainer="VeriTabaniEntities">
+    <EntitySetMapping Name="BiletTablosu">
+      <EntityTypeMapping TypeName="VeriTabaniModel.BiletTablosu">
+        <MappingFragment StoreEntitySet="BiletTablosu">
+          <ScalarProperty Name="bilet_id" ColumnName="bilet_id" />
+          <ScalarProperty Name="bilet_film" ColumnName="bilet_film" />
+          <ScalarProperty Name="bilet_koltuk" ColumnName="bilet_koltuk" />
+          <ScalarProperty Name="bilet_tarih" ColumnName="bilet_tarih" />
+          <ScalarProperty Name="bilet_saat" ColumnName="bilet_saat" />
+          <ScalarProperty Name="bilet_uyeId" ColumnName="bilet_uyeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FilmTablosu">
+      <EntityTypeMapping TypeName="VeriTabaniModel.FilmTablosu">
+        <MappingFragment StoreEntitySet="FilmTablosu">
+          <ScalarProperty Name="film_id" ColumnName="film_id" />
+          <ScalarProperty Name="film_ismi" ColumnName="film_ismi" />
+          <ScalarProperty Name="film_aciklama" ColumnName="film_aciklama" />
+          <ScalarProperty Name="film_vizyon" ColumnName="film_vizyon" />
+          <ScalarProperty Name="film_resim" ColumnName="film_resim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SeansKoltukTablosu">
+      <EntityTypeMapping TypeName="VeriTabaniModel.SeansKoltukTablosu">
+        <MappingFragment StoreEntitySet="SeansKoltukTablosu">
+          <ScalarProperty Name="seans_id" ColumnName="seans_id" />
+          <ScalarProperty Name="koltuk_no" ColumnName="koltuk_no" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SeansTablosu">
+      <EntityTypeMapping TypeName="VeriTabaniModel.SeansTablosu">
+        <MappingFragment StoreEntitySet="SeansTablosu">
+          <ScalarProperty Name="seans_id" ColumnName="seans_id" />
+          <ScalarProperty Name="seans_filmId" ColumnName="seans_filmId" />
+          <ScalarProperty Name="seans_tarih" ColumnName="seans_tarih" />
+          <ScalarProperty Name="seans_saat" ColumnName="seans_saat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UyelerTablosu">
+      <EntityTypeMapping TypeName="VeriTabaniModel.UyelerTablosu">
+        <MappingFragment StoreEntitySet="UyelerTablosu">
+          <ScalarProperty Name="uye_id" ColumnName="uye_id" />
+          <ScalarProperty Name="uye_isim" ColumnName="uye_isim" />
+          <ScalarProperty Name="uye_sifre" ColumnName="uye_sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KullanicilarTablosu">
+      <EntityTypeMapping TypeName="VeriTabaniModel.KullanicilarTablosu">
+        <MappingFragment StoreEntitySet="KullanicilarTablosu">
+          <ScalarProperty Name="kullanici_ad" ColumnName="kullanici_ad" />
+          <ScalarProperty Name="kullanici_sifre" ColumnName="kullanici_sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

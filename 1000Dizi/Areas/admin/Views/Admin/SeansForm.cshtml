@@ -1,0 +1,48 @@
+﻿@model _1000Dizi.ViewModels.SeansViewModel
+@{
+    ViewBag.Title = "SeansForm";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container">
+        <h2 class="pt-3">Yeni Seans Oluştur</h2>
+        @using (Html.BeginForm("SeansKaydet", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+            <table class="table table-bordered">
+                <tr>
+                    <td>Gösterilecek Film</td>
+                    <td>
+                        @Html.DropDownListFor(m => m.Seanslar.seans_filmId, new SelectList(Model.Filmler, "film_id", "film_ismi"))
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Seans Tarih
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Seanslar.seans_tarih, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Seanslar.seans_tarih)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Seans Saati</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Seanslar.seans_saat, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Seanslar.seans_saat)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.HiddenFor(m => m.Seanslar.seans_id)
+                        <input type="submit" value="Yeni Seans Ekle" class="btn btn-primary" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,71 @@
+﻿@model _1000Dizi.Models.UyelerTablosu
+@{
+    ViewBag.Title = "GirisIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .navbar{
+        background-color:#000000;
+        padding-top:0px;
+    }
+    body{
+        background-image:url("../../Content/images/movie/dayi.jpg");
+        
+        background-repeat:repeat;
+        background-attachment:scroll;
+    }
+</style>
+<div class="login-box m-5 p-5 mx-auto" style="max-width:50vw">
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">Giriş Yapın</p>
+
+            @using (Html.BeginForm("Uyelogin", "Giris", new { FormMethod.Post }))
+            {
+                <div class="input-group mb-3">
+                    @Html.TextBoxFor(m => m.uye_isim, new { @class = "form-control", placeholer = "Email", autofocus = "autofocus" })
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    @Html.PasswordFor(m => m.uye_sifre, new { @class = "form-control", placeholer = "Şifre" })
+
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Giriş</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            }
+
+            @if (ViewBag.Hata != null)
+            {
+                <div class="alert alert-danger mt-4">
+                    @ViewBag.Hata
+                </div>
+            }
+
+            <p class="mb-1">
+                <a href="forgot-password.html">I forgot my password</a>
+            </p>
+            <p class="mb-0">
+                <a href="register.html" class="text-center">Register a new membership</a>
+            </p>
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+</div>
+<!-- /.login-box -->

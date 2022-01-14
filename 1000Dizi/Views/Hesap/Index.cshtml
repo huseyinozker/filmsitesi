@@ -1,0 +1,75 @@
+﻿@model  List<_1000Dizi.Models.BiletTablosu>
+@{
+    ViewBag.Title = "Hesap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .navbar {
+        background-color: #000000;
+        padding-top: 0px;
+        position: relative;
+    }
+</style>
+@if (Session["uye_id"]!=null)
+{
+    <div class="card m-5">
+        <div class="card-header">
+            Hoşgeldiniz, <strong>@Session["uye_isim"].ToString() @Session["uye_id"].ToString()</strong> 
+        </div>
+        <div class="card-body">
+            <div class="accordion" id="accordionExample">
+                Biletleriniz:
+                @for(int i=0;i<Model.Count;i++)
+                {
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headin-@i">
+                            <button class="accordion-button collapsed p-1" type="button" data-bs-toggle="collapse" data-bs-target="#target-@i" aria-expanded="true" aria-controls="target-@i">
+                                Bilet #@Model[i].bilet_id
+                            </button>
+                        </h2>
+                        <div id="target-@i" class="accordion-collapse collapse " aria-labelledby="heading-@i" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            Bilet No:
+                                        </td>
+                                        <td>
+                                            @Model[i].bilet_id
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Film:</td>
+                                        <td> @Model[i].bilet_film</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Koltuk No:</td>
+                                        <td>
+                                            @Model[i].bilet_koltuk
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seans Tarihi: </td>
+                                        <td> @Model[i].bilet_tarih</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seans Saati:</td>
+                                        <td> @Model[i].bilet_saat</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+}
+else { 
+    <div class="card m-5">Lütfen giriş yapınız</div>
+}
+
+
+

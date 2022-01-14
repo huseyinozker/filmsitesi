@@ -1,0 +1,94 @@
+﻿@using _1000Dizi.Models;
+
+@model _1000Dizi.ViewModels.FilmViewModel
+
+@{
+    ViewBag.Title = "film";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Header -->
+<header class="ex-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 offset-xl-1">
+                <h1>@Model.Film.film_ismi</h1>
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</header> <!-- end of ex-header -->
+<!-- end of header -->
+<!-- Basic -->
+<div class="ex-basic-1 pt-1 pb-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <img class="mt-2 mb-2 shadow" src="~/Content/images/movie/@Model.Film.film_resim" alt="alternative" style="max-height:400px">
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div> <!-- end of ex-basic-1 -->
+<!-- end of basic -->
+<!-- Basic -->
+<div class="ex-basic-1 pt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 offset-xl-1 text-center">
+                <h2 class="mb-3">@Model.Film.film_ismi</h2>
+                <p>@Model.Film.film_aciklama</p>
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div> <!-- end of ex-basic-1 -->
+<!-- end of basic -->
+<div class="container">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            @for (int i = 0; i < Model.Seanslar.Count; i++)
+            {
+                <button class="nav-link @(i==0 ? "active" : "")" id="nav-seans-@i-tab" data-bs-toggle="tab" data-bs-target="#nav-seans-@i" type="button" role="tab" aria-controls="nav-seans-@i" aria-selected="@(i==0 ? "true" : "false")">Seans @(i+1)</button>
+            }
+
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        @for (int i = 0; i < Model.Seanslar.Count; i++)
+        {
+            <div class="tab-pane fade @(i==0 ? "show active" : "")" id="nav-seans-@i" role="tabpanel" aria-labelledby="nav-seans-@i-tab">
+                <div class="pt-2">
+                    <div><strong>Seans Bilgileri</strong></div>
+                    <table>
+                        <tr>
+                            <td>Seans Tarihi:</td>
+                            <td>@Model.Seanslar[i].seans_tarih</td>
+                        </tr>
+                        <tr>
+                            <td>Seans Saati:</td>
+                            <td>@Model.Seanslar[i].seans_saat</td>
+                        </tr>
+                    </table>
+                </div>
+                <h3>Bilet:</h3>
+                <span>*Koltuk Seçiniz</span>
+                <div>
+                    @for (int j = 1; j <= 30; j++)
+                    {
+                        foreach (SeansKoltukTablosu koltuk in Model.SeansKoltuklari.Where(m => m.seans_id == Model.Seanslar[i].seans_id))
+                        {
+                            if (koltuk.koltuk_no == j.ToString())
+                            {
+                                <button type="button" style="width:100px;height:80px" class="btn btn-secondary m-2" disabled>@j</button>
+                                j++;
+                                continue;
+                            }
+                        }
+                        @Html.ActionLink(j.ToString(), "Biletal", "Default",new { koltuk=j,seans=Model.Seanslar[i].seans_id,seans_saat = Model.Seanslar[i].seans_saat,seans_tarih = Model.Seanslar[i].seans_tarih, film=Model.Film.film_ismi } ,new { @class = "btn btn-primary m-2 text-center" ,@style="width:100px;height:80px;"})
+
+                        //<button type="button" style="width:100px;height:80px" class="btn btn-primary m-2">@j</button>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

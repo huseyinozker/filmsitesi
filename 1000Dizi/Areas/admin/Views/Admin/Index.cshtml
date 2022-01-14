@@ -1,0 +1,134 @@
+﻿@model List<_1000Dizi.Models.FilmTablosu>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Filmler</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            @Html.ActionLink("Yeni Film Ekle", "Yeni",null, new { @class = "btn btn-success mx-4" })
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Filmin Adı</th>
+                                        <th>Açıklama</th>
+                                        <th>Vizyonda mı?</th>
+                                        <th>Fotoğraf</th>
+                                        <th>Güncelle</th>
+                                        <th>Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var film in Model)
+                                    {
+                                        <tr>
+                                            <td>@film.film_ismi</td>
+                                            <td>@film.film_aciklama</td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control">
+                                                        @if (film.film_vizyon == "1")
+                                                        {
+                                                            <option selected="selected">Evet</option>
+                                                            <option>Hayır</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option>Evet</option>
+                                                            <option selected="selected">Hayır</option>
+                                                        }
+
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>@film.film_resim @film.film_id</td>
+                                            <td>@Html.ActionLink("Güncelle", "Guncelle",new { id = film.film_id }, new { @class = "btn btn-info mx-4" }) </td>
+                                            <td>@Html.ActionLink("Sil", "Sil", new { film.film_id }, new { @class = "btn btn-danger mx-4" }) </td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- Control Sidebar -->
+
+<!-- ./wrapper -->
+<!-- jQuery -->
+<script src="~/Content/admin/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="~/Content/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="~/Content/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/Content/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="~/Content/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="~/Content/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="~/Content/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="~/Content/admin/plugins/jszip/jszip.min.js"></script>
+<script src="~/Content/admin/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="~/Content/admin/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="~/Content/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="~/Content/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="~/Content/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/Content/admin/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="~/Content/admin/dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });</script>
+

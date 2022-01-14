@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VeriTabaniModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BiletTablosu">
+    <Key>
+      <PropertyRef Name="bilet_id" />
+    </Key>
+    <Property Name="bilet_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bilet_film" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="bilet_koltuk" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="bilet_tarih" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="bilet_saat" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="bilet_uyeId" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="FilmTablosu">
+    <Key>
+      <PropertyRef Name="film_id" />
+    </Key>
+    <Property Name="film_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="film_ismi" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="film_aciklama" Type="varchar" MaxLength="1000" />
+    <Property Name="film_vizyon" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="film_resim" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Deneme.dbo.KullanicilarTablosu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="KullanicilarTablosu">
+    <Key>
+      <PropertyRef Name="kullanici_ad" />
+      <PropertyRef Name="kullanici_sifre" />
+    </Key>
+    <Property Name="kullanici_ad" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="kullanici_sifre" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SeansKoltukTablosu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="seans_id" Type="int" Nullable="false" />
+    <Property Name="koltuk_no" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SeansTablosu">
+    <Key>
+      <PropertyRef Name="seans_id" />
+    </Key>
+    <Property Name="seans_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="seans_filmId" Type="int" Nullable="false" />
+    <Property Name="seans_tarih" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="seans_saat" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UyelerTablosu">
+    <Key>
+      <PropertyRef Name="uye_id" />
+    </Key>
+    <Property Name="uye_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uye_isim" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="uye_sifre" Type="nchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="VeriTabaniModelStoreContainer">
+    <EntitySet Name="BiletTablosu" EntityType="Self.BiletTablosu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FilmTablosu" EntityType="Self.FilmTablosu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SeansKoltukTablosu" EntityType="Self.SeansKoltukTablosu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SeansTablosu" EntityType="Self.SeansTablosu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UyelerTablosu" EntityType="Self.UyelerTablosu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KullanicilarTablosu" EntityType="Self.KullanicilarTablosu" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [KullanicilarTablosu].[kullanici_ad] AS [kullanici_ad], 
+    [KullanicilarTablosu].[kullanici_sifre] AS [kullanici_sifre]
+    FROM [dbo].[KullanicilarTablosu] AS [KullanicilarTablosu]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

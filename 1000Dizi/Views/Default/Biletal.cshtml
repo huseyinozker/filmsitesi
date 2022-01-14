@@ -1,0 +1,73 @@
+﻿@using _1000Dizi.Models
+@model _1000Dizi.ViewModels.BiletBilgileri
+@{
+    ViewBag.Title = "Biletal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bilet Alma İşlemi</h2>
+<div class="card m-5">
+    <div class="card-header">
+       Bilet/Seans Bilgileri
+    </div>
+    <div class="card-body">
+        <table>
+            <tr>
+                <td>Bilet Tarihi:</td>
+                <td>@Model.bilet_tarih</td>
+            </tr>
+            <tr>
+                <td>Bilet Saati:</td>
+                <td>@Model.bilet_saat</td>
+            </tr>
+            <tr>
+                <td>Film:</td>
+                <td>@Model.film_ismi</td>
+            </tr>
+            <tr>
+                <td>Koltuk No:</td>
+                <td>@Model.koltuk_no</td>
+            </tr>
+            <tr>
+                <td>Üye No:</td>
+                <td>@Model.uye_id</td>
+            </tr>
+            <tr>
+                <td>Seans No:</td>
+                <td>@Model.seans_no</td>
+            </tr>
+        </table>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Bileti Satın Al
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Bilet Alma İşlemi...</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="p-3 py-5 bg-info rounded">
+                            <span class="mb-auto">Tarafınıza SMS olarak gönderilen şifreyi girin lütfen...</span>
+                            
+                            <input class="form-control" type="text" placeholder="***" aria-label="default input example">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal Et</button>
+                        @Html.ActionLink("İşlemi Tamamla", "BiletKaydet", "Default", new { koltuk = Model.koltuk_no, seans = Model.seans_no, seans_saat = Model.bilet_saat, seans_tarih = Model.bilet_tarih, film = Model.film_ismi }, new { @class = "btn btn-primary"})
+
+                        <button type="button" class="btn btn-primary">İşlemi Tamamla</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
